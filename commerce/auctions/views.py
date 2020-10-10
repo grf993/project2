@@ -10,11 +10,11 @@ from .models import User, AuctionListing, Bid, Comment
 # pylint: disable=E1101
 
 class CreateListingForm(forms.Form):
-    title = forms.CharField(label="")
-    description = forms.CharField(label="", widget=forms.Textarea())
+    title = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea())
     startingBid = forms.DecimalField(decimal_places=2)
-    category = forms.CharField(label="", required=False)
-    imageUrl = forms.CharField(label="", required=False)
+    category = forms.CharField(required=False)
+    imageUrl = forms.CharField(required=False)
 
 def index(request):
     return render(request, "auctions/index.html", {
@@ -85,8 +85,9 @@ def createListing(request):
                 category=form.cleaned_data["category"],
                 imageUrl=form.cleaned_data["imageUrl"])
             listing.save()
-            return render(request, "auctions/index.html", {
-                "message": "Listing successfully created!"
+            return render(request, "auctions/create_listing.html", {
+                "message": "Listing successfully created!",
+                "form": CreateListingForm()
             })
         else:
             return render(request, "auctions/create_listing.html", {
@@ -105,5 +106,8 @@ def watchlist(request):
 def categories(request):
     return render(request, "auctions/categories.html")
 
-def viewListing(request):
-    return render(request, "auctions/listing.html")
+def viewListing(request, listingId):
+    listing = AuctionListing.objects.get(id=listingId)
+    return render(request, "auctions/listing.html", {
+        "listing": listing
+    })

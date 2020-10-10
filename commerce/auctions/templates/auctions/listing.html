@@ -2,10 +2,16 @@
 
 {% block body %}
 
-    <h2>Listing (insert title here)</h2>
+    <h2>Listing: {{ listing.title }}</h2>
 
     {% if message %}
         <div>{{ message }}</div>
     {% endif %}
+
+    <img src="{{ listing.imageUrl }}" height="325">
+    <p></p>
+    <textarea>{{ listing.description }}</textarea>
+    <p>Price: ${{ listing.startingBid }}</p>
+    <p>Category: {{ listing.category }}</p>
 
 {% endblock %}

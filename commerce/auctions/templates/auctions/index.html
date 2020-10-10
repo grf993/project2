@@ -16,12 +16,12 @@
             {% for item in listItems %}
                 <tr>
                     <td>
-                        <img src="{{ item.imageUrl }}" height="250">
+                        <a href="{% url 'viewListing' item.id %}"><img src="{{ item.imageUrl }}" height="250"></a>
                     </td>
                     <td>
-                        <h4>{{ item.title }}</h4>
+                        <h4><a href="{% url 'viewListing' item.id %}">{{ item.title }}</a></h4>
                         <p>Price: ${{ item.startingBid }}</p>
-                        <textarea id="activeListingDescription">{{ item.description }}</textarea>
+                        <textarea>{{ item.description }}</textarea>
                         <p>Category: {{ item.category }}</p>
                     </td>
                 </tr>
