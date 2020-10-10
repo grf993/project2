@@ -8,5 +8,24 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    TODO
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+            {% for item in listItems %}
+                <tr>
+                    <td>
+                        <img src="{{ item.imageUrl }}" height="250">
+                    </td>
+                    <td>
+                        <h4>{{ item.title }}</h4>
+                        <p>Price: ${{ item.startingBid }}</p>
+                        <textarea id="activeListingDescription">{{ item.description }}</textarea>
+                        <p>Category: {{ item.category }}</p>
+                    </td>
+                </tr>
+            {% endfor %}
+    </table>
+    
 {% endblock %}

@@ -9,9 +9,9 @@ class User(AbstractUser):
 class AuctionListing(models.Model):
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=2048)
-    startingBid = models.FloatField()
-    imageUrl = models.CharField(max_length=256)
-    category = models.CharField(max_length=64)
+    startingBid = models.DecimalField(max_digits=10, decimal_places=2)
+    imageUrl = models.CharField(max_length=256, blank=True)
+    category = models.CharField(max_length=64, blank=True)
 
 class Bid(models.Model):
     pass
